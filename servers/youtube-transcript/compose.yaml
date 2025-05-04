@@ -1,0 +1,20 @@
+services:
+
+  youtube-transcript-server:
+    build:
+      context: .
+    image: youtube-transcript:latest
+    #ports:
+    #  - 8000:8000
+    container_name: youtube-transcript-server
+    hostname: youtube-transcript-server
+    restart: always
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - openwebui
+
+networks:
+  openwebui:
+    external: true
