@@ -1,0 +1,42 @@
+services:
+  reader:
+    build:
+      context: .
+      dockerfile: Dockerfile.reader
+    image: reader:latest
+    hostname: reader
+    container_name: reader
+    #ports:
+    #  - "3000:3000"
+    volumes:
+      - ./screenshots:/app/local-storage
+    restart: always
+    environment:
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
+      PUPPETEER_EXECUTABLE_PATH: "/usr/bin/google-chrome-stable"
+    command: node build/server.js
+    networks:
+      - default
+  
+  reader-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    image: reader-server:latest
+    hostname: reader-server
+    container_name: reader-server
+    #ports:
+    #  - "8000:8000"
+    restart: always
+    depends_on:
+      - reader
+    volumes:
+      - ./main.py:/app/main.py
+      - ./screenshots:/app/screenshots
+    networks:
+      - default
+      - openwebui
+
+networks:
+  openwebui:
+    external: true

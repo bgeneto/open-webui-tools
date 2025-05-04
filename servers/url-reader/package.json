@@ -1,0 +1,24 @@
+{
+    "name": "reader",
+    "version": "1.0.0",
+    "description": "### Prerequisite - Node v18 (The build fails for Node version >18) - Yarn - Firebase CLI (`npm install -g firebase-tools`)",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "cd backend/functions && npx nodemon --watch ./src --exec \"npm run build && node build/server.js\"",
+        "build": "tsc"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "firebase-tools": "^12.4.2",
+        "typescript": "^5.1.6",
+        "@types/express": "^4.17.17",
+        "ts-node": "^10.9.1",
+        "nodemon": "^2.0.22"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "tsyringe": "^4.7.0"
+    }
+}
