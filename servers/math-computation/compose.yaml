@@ -1,11 +1,11 @@
 services:
 
-  simple-math-server:
+  math-computation-server:
     build:
       context: .
-    image: simple-math-server:latest
-    container_name: simple-math-server
-    hostname: simple-math-server
+    image: math-computation-server:latest
+    container_name: math-computation-server
+    hostname: math-computation-server
     restart: always
     volumes:
       - /etc/timezone:/etc/timezone:ro
